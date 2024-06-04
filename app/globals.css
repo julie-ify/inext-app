@@ -14,5 +14,11 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-	padding: 1rem;
+}
+
+/* use this to override html tailwing styling */
+@layer base {
+	h1 {
+		@apply font-extrabold text-2xl
+	}
 }
