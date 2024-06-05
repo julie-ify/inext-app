@@ -13,11 +13,7 @@ const UsersPage = ({ searchParams: { sortOrder } }: Props) => {
 			<Link href={'/users/new'} className="btn">
 				New User
 			</Link>
-			{/* Suspense component was introduced in react 18 */}
-			{/* Suspense comonent is used as fallback when component is fetching data */}
-			<Suspense fallback={<p>Loading...</p>}>
-				<UserTable sortOrder={sortOrder} />
-			</Suspense>
+			<UserTable sortOrder={sortOrder} />
 		</div>
 	);
 };
