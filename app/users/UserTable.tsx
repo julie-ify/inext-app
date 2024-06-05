@@ -13,7 +13,6 @@ interface Props {
 }
 
 const UserTable = async ({ sortOrder }: Props) => {
-	console.log(sortOrder);
 	const API_URL = 'https://jsonplaceholder.typicode.com/users';
 	// can fetch data directly from the server component without side effects
 	const res = await fetch(API_URL, {
