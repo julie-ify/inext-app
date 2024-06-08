@@ -16,12 +16,17 @@ datasource db {
 // each property is required by default
 // use ? to specify optional property
 model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  name      String
-  followers Int     @default(0)
-  isActive  Boolean @default(true)
-	registeredAt DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  followers    Int      @default(0)
+  isActive     Boolean  @default(true)
+  registeredAt DateTime @default(now())
 }
 
-
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  price     Float    @default(0.0)
+  createdAt DateTime @default(now())
+}
