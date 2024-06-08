@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import schema from './schema';
+import client from '@/prisma/client';
 
-export function GET(request: NextRequest) {
-	return NextResponse.json([
-		{ id: 1, name: 'Juliana', price: 2.5 },
-		{ id: 2, name: 'May', price: 3.5 },
-	]);
+export async function GET(request: NextRequest) {
+	const allProducts = await client.product.findMany();
+	return NextResponse.json(allProducts);
 }
 
 export async function POST(request: NextRequest) {
@@ -15,8 +14,24 @@ export async function POST(request: NextRequest) {
 	const validation = schema.safeParse(body);
 	if (!validation.success)
 		return NextResponse.json(validation.error.errors, { status: 400 });
-	return NextResponse.json(
-		{ id: 3, name: body.name, price: body.price },
-		{ status: 201 }
-	);
+
+	const isProductExist = await client.product.findUnique({
+		where: {
+			name: body.name,
+		},
+	});
+	if (isProductExist) {
+		return NextResponse.json(
+			{ error: 'Product Already Exist' },
+			{ status: 400 }
+		);
+	}
+
+	const product = await client.product.create({
+		data: {
+			name: body.name,
+			price: body.price,
+		},
+	});
+	return NextResponse.json(product, { status: 201 });
 }
