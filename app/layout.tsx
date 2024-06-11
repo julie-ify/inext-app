@@ -7,8 +7,8 @@ import AuthProvider from './auth/Provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Issue-Tracker',
-	description: 'Helps track your project issues effectively',
+	title: 'iNext App',
+	description: 'Modern next app',
 };
 
 export default function RootLayout({
