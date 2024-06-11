@@ -1,7 +1,8 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-const handler = NextAuth({
+// the authOptions will create a session which can be used on the server components
+export const authOptions = {
 	// add as many providers as you want here
 	providers: [
 		GoogleProvider({
@@ -11,6 +12,7 @@ const handler = NextAuth({
 			clientSecret: process.env.GOODLE_CLIENT_SECRET!,
 		}),
 	],
-});
+};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
