@@ -20,7 +20,10 @@ const NavBar = () => {
 			)}
 			{status === 'unauthenticated' && (
 				// the signin is exposed to our next auth on api/auth/signin
-				<Link href={'/api/auth/signin'}>Sign in</Link>
+				<>
+					<Link href={'/api/auth/signin'}>Sign in</Link>
+					<Link href={'/register'}>Sign up</Link>
+				</>
 			)}
 		</div>
 	);
